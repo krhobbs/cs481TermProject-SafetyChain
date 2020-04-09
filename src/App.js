@@ -14,7 +14,7 @@ class App extends Component {
   componentDidMount() {
     let currentState = this;
 
-    navigator.geolocation.getCurrentPosition(function(position) {
+    navigator.geolocation.watchPosition(function(position) {
       currentState.setState({
         latitude: position.coords.latitude,
         longitude: position.coords.longitude
