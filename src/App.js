@@ -7,7 +7,10 @@ class App extends Component {
 
     this.state = {
       latitude: 0,
-      longitude: 0
+      longitude: 0,
+      speed: 0,
+      speedLimit: 60,
+      violations: []
     }
   }
 
@@ -17,7 +20,7 @@ class App extends Component {
     navigator.geolocation.watchPosition(function(position) {
       currentState.setState({
         latitude: position.coords.latitude,
-        longitude: position.coords.longitude
+        longitude: position.coords.longitude,
       });
       console.log(position.speed);
     });
@@ -29,7 +32,6 @@ class App extends Component {
           <h4>Your latitude: {this.state.latitude}</h4>
           <br />
           <h4>Your longitude: {this.state.longitude}</h4>
-
         </div>
     );
   }
