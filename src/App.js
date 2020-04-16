@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Violation from "./components/violation";
+import Speed from "./components/speed";
 
 class App extends Component {
   constructor(props) {
@@ -36,9 +37,7 @@ class App extends Component {
   render () {
     return (
         <div className="App">
-          <h4>Your latitude: {this.state.latitude}</h4>
-          <br />
-          <h4>Your longitude: {this.state.longitude}</h4>
+          <Speed speed={this.state.speed} speedLimit={this.state.speedLimit} />
           {this.displayViolations()}
         </div>
     );
