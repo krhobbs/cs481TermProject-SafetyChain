@@ -4,11 +4,11 @@ class Violation extends Component {
 
     render () {
         return (
-            // Want to display the speed over speed limit, passed as props
+            // Want to display speed, speedLimit, location, and time of the incident
             <div className="violation">
-                <h4>Your latitude: {this.state.latitude}</h4>
+                <h4>Your latitude: {this.props.lat}</h4>
                 <br />
-                <h4>Your longitude: {this.state.longitude}</h4>
+                <h4>Your longitude: {this.props.lon}</h4>
             </div>
         );
     }
