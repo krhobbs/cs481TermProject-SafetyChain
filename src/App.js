@@ -11,7 +11,7 @@ class App extends Component {
       latitude: 0,
       longitude: 0,
       speed: 0,
-      speedLimit: -1,
+      speedLimit: 65,
       violations: [] // List of violation objects containing: speed, speedLimit, date, lat, lon
     }
   }
@@ -61,7 +61,7 @@ class App extends Component {
   componentDidMount() {
     this.getSpeed();
     this.timer = setInterval(
-        () => this.checkSpeed(), 10000
+        () => this.checkSpeed(), 30000
     );
   }
 
