@@ -61,7 +61,7 @@ class App extends Component {
   componentDidMount() {
     this.getSpeed();
     this.timer = setInterval(
-        () => this.checkSpeed(), 20000
+        () => this.checkSpeed(), 10000
     );
   }
 
