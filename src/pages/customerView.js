@@ -8,12 +8,15 @@ function mapStateToProps(state) {
    };
 }
 
+// Still need to render violations here instead of location in App.js
 class CustomerView extends Component {
    render() {
       return (
          <div>
-           <h2> CUSTOMER VIEW </h2>
-         </div>
+             <h2>Customer Portal</h2>
+             <h3>Violations: </h3>
+
+        </div>
       );
   }
 }
