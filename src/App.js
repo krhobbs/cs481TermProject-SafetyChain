@@ -5,7 +5,8 @@ import initBlockchain from "./utils/initBlockchain"
 import Violation from "./components/violation";
 import Speed from "./components/speed";
 import TopBar from "./components/topbar";
-
+import CustomerView from "./pages/customerView"
+import AgencyView from "./pages/agencyView"
 
 import { HashRouter, Route } from "react-router-dom";
 import { Container } from "semantic-ui-react";
@@ -95,11 +96,17 @@ class App extends Component {
   render () {
     return (
       <Provider store={store}>
-        <div className="App">
-          <TopBar state={this.state} />
-          <Speed speed={this.state.speed} speedLimit={this.state.speedLimit} longitude={this.state.longitude} latitude={this.state.latitude}/>
-          {this.displayViolations()}
-        </div>
+        <HashRouter>
+          <Container>
+           <div className="App">
+             <TopBar state={this.state} />
+             <Speed speed={this.state.speed} speedLimit={this.state.speedLimit} longitude={this.state.longitude} latitude={this.state.latitude}/>
+             {this.displayViolations()}
+           </div>
+           <Route exact path="/customerView" component={CustomerView} />
+           <Route exact path="/agencyView" component={AgencyView} />
+          </Container>
+        </HashRouter>
       </Provider>
     );
   }

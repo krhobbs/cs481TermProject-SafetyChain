@@ -9,28 +9,33 @@ function mapStateToProps(state) {
    console.log(state.userAddress);
   return {
     userAddress: state.userAddress,
+    activeItem: "customerButton"
   };
 }
+
 
 // This renders the topbar on the webpage as well as the lines listing address and zombie count.
 
 class TopBar extends Component {
+
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name})
+
   render() {
+    const {activeItem} = this.props.activeItem;
     return (
       <div>
-        <Menu style={{ marginTop: "10px", backgroundColor: "Salmon" }}>
+        <Menu style={{ marginTop: "10px", backgroundColor: "Gray" }}>
+
           <Menu.Item>
-            <Button>Customer? Click here to see your record</Button>
+            <Link to={{ pathname: "/customerView"}}>
+              <Button primary>Customer Portal</Button>
+            </Link>
           </Menu.Item>
 
           <Menu.Item>
-            <Button>Agent? Click here to review customer records</Button>
-          </Menu.Item>
-
-          <Menu.Item>
-          </Menu.Item>
-
-          <Menu.Item position="right">
+            <Link to={{ pathname: "/agencyView"}}>
+              <Button primary>Agency Portal</Button>
+            </Link>
           </Menu.Item>
         </Menu>
         <div className="center">
