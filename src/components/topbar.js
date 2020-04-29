@@ -24,24 +24,29 @@ class TopBar extends Component {
     const {activeItem} = this.props.activeItem;
     return (
       <div>
-        <Menu style={{ marginTop: "10px", backgroundColor: "Gray" }}>
+          <div className="center">
+              <h2>Welcome to SafetyChain!</h2>
+          </div>
+          Your account address: {this.props.userAddress}
+        <Menu style={{ marginTop: "10px", backgroundColor: "Blue" }}>
+            <Menu.Item>
+                <Link to={{ pathname: "/welcome"}}>
+                    <Button color="Grey">About</Button>
+                </Link>
+            </Menu.Item>
 
           <Menu.Item>
             <Link to={{ pathname: "/customerView"}}>
-              <Button primary>Customer Portal</Button>
+              <Button color="Grey">Customer Portal</Button>
             </Link>
           </Menu.Item>
 
           <Menu.Item>
             <Link to={{ pathname: "/agencyView"}}>
-              <Button primary>Agency Portal</Button>
+              <Button color = "Grey">Agency Portal</Button>
             </Link>
           </Menu.Item>
         </Menu>
-        <div className="center">
-          <h2>Welcome to SafetyChain!</h2>
-        </div>
-        Your account address: {this.props.userAddress}
       </div>
     );
   }

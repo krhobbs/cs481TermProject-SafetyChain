@@ -5,6 +5,7 @@ import initBlockchain from "./utils/initBlockchain"
 import Violation from "./components/violation";
 import Speed from "./components/speed";
 import TopBar from "./components/topbar";
+import Welcome from "./pages/welcome"
 import CustomerView from "./pages/customerView"
 import AgencyView from "./pages/agencyView"
 
@@ -103,13 +104,14 @@ class App extends Component {
              <Speed speed={this.state.speed} speedLimit={this.state.speedLimit} longitude={this.state.longitude} latitude={this.state.latitude}/>
              {this.displayViolations()}
            </div>
-           <Route exact path="/customerView" component={CustomerView} />
-           <Route exact path="/agencyView" component={AgencyView} />
+            <Route exact path="/" component={Welcome} />
+            <Route exact path="/customerView" component={CustomerView} />
+            <Route exact path="/agencyView" component={AgencyView} />
+            <Route exact path="/welcome" component ={Welcome} />
           </Container>
         </HashRouter>
       </Provider>
     );
   }
 }
-
 export default App;
