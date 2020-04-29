@@ -1,7 +1,18 @@
 import React, { Component } from 'react';
 import './App.css';
+import getWeb3 from "./utils/getWeb3";
+import initBlockchain from "./utils/initBlockchain"
 import Violation from "./components/violation";
 import Speed from "./components/speed";
+import TopBar from "./components/topbar";
+import CustomerView from "./pages/customerView"
+import AgencyView from "./pages/agencyView"
+
+import { HashRouter, Route } from "react-router-dom";
+import { Container } from "semantic-ui-react";
+import { Provider } from "react-redux";
+
+import store from "./redux/store";
 
 class App extends Component {
   constructor(props) {
@@ -12,7 +23,8 @@ class App extends Component {
       longitude: 0,
       speed: 0,
       speedLimit: 65,
-      violations: [] // List of violation objects containing: speed, speedLimit, date, lat, lon
+      violations: [], // List of violation objects containing: speed, speedLimit, date, lat, lon
+      userAddress: ""
     }
   }
 
@@ -58,11 +70,20 @@ class App extends Component {
     this.setState({violations: currentViolations})
   }
 
-  componentDidMount() {
+  componentDidMount = async() => {
     this.getSpeed();
     this.timer = setInterval(
         () => this.checkSpeed(), 30000
     );
+    try {
+      const web3 = await getWeb3();
+      const data = await initBlockchain(web3);
+      this.state.userAddress = data.userAddress;
+      console.log(data)
+      console.log(this.state)
+   } catch (error){
+      alert(error);
+   }
   }
 
 
@@ -74,10 +95,19 @@ class App extends Component {
 
   render () {
     return (
-        <div className="App">
-          <Speed speed={this.state.speed} speedLimit={this.state.speedLimit} longitude={this.state.longitude} latitude={this.state.latitude}/>
-          {this.displayViolations()}
-        </div>
+      <Provider store={store}>
+        <HashRouter>
+          <Container>
+           <div className="App">
+             <TopBar state={this.state} />
+             <Speed speed={this.state.speed} speedLimit={this.state.speedLimit} longitude={this.state.longitude} latitude={this.state.latitude}/>
+             {this.displayViolations()}
+           </div>
+           <Route exact path="/customerView" component={CustomerView} />
+           <Route exact path="/agencyView" component={AgencyView} />
+          </Container>
+        </HashRouter>
+      </Provider>
     );
   }
 }
