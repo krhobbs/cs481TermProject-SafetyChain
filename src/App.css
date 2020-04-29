@@ -16,3 +16,34 @@
 .App-link {
   color: #61dafb;
 }
+
+.violation {
+  display: grid;
+  border-top: 1px solid #282c34;
+  border-bottom: 1px solid #282c34;
+  margin-bottom: 5px;
+  grid-template-areas:
+    "speed speedLimit . map"
+    "date time . map";
+
+}
+
+#speedInfo {
+  grid-area: speed;
+}
+
+#speedLimitInfo {
+  grid-area: speedLimit;
+}
+
+#dateInfo {
+  grid-area: date;
+}
+
+#locationInfo {
+  grid-area: map;
+}
+
+#timeInfo {
+  grid-area: time;
+}
