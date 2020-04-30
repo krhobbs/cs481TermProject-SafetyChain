@@ -10,7 +10,7 @@ class Speed extends Component {
             //Coordinates added for testing purposes
             <div className="speed">
                 <h1>{this.props.speed} mph / <span style={{fontSize: "12px"}}>{this.props.speedLimit} mph</span></h1>
-                <h1>{this.props.longitude} , {this.props.latitude}</h1>
+                <h1>{this.props.latitude} , {this.props.longitude}</h1>
             </div>
         );
     }

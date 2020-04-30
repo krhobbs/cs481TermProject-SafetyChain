@@ -29,4 +29,16 @@ contract Safety {
         userInfractionCount[msg.sender] = userInfractionCount[msg.sender] + 1;
         emit NewInfraction(id,_datetime);
     }
+
+    function getInfractionsByUser(address _user) public view returns(uint[] memory) {
+      uint[] memory result = new uint[](userInfractionCount[_user]);
+      uint counter = 0;
+      for(uint i = 0; i < infractions.length; i++) {
+         if(infractionToUser[i] == _user) {
+            result[counter] = i;
+            counter = counter + 1;
+         }
+      }
+      return result;
+    }
 }

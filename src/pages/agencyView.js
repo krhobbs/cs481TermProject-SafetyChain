@@ -39,7 +39,7 @@ class AgencyView extends Component {
    getOptionList() {
       let options = [];
       for(let i = 0; i < this.state.usrList.length; i++) {
-         options.push({key:i,text:this.state.usrList[i]})
+         options.push({key:i,text:this.state.usrList[i],value:this.state.usrList[i]})
       }
       return(options)
    }
@@ -48,12 +48,41 @@ class AgencyView extends Component {
       await this.getUserList();
    }
 
-   onSelection = (e) =>
-     this.setState({inspectionAddress: e.target.textContent},
-     () => {console.log(this.state); console.log(this.props)})
+
+   updateViolationTable = async() => {
+      let violationCards = []
+      let numViolations = await this.props.chain.methods.userInfractionCount(this.state.inspectionAddress).call();
+      let userViolations = await this.props.chain.methods.getInfractionsByUser(this.state.inspectionAddress).call();
+      for(let i = 0; i < numViolations; i++) {
+         let thisViolation = await this.props.chain.methods.infractions(userViolations[i]).call();
+         let lat = thisViolation.latitude>>0;
+         let lon = thisViolation.longitude>>0;
+         console.log(thisViolation)
+         violationCards.push(
+            <Card fluid color='red'>
+               <Card.Content>
+                  <Card.Header>Speed Violation</Card.Header>
+                  <Card.Description>
+                     {thisViolation.speed} MPH / {thisViolation.limit} MPH
+                     <hr/>
+                     {lat} latitude  {lon} longitude
+
+                  </Card.Description>
+               </Card.Content>
+            </Card>
+         )
+      }
+      this.setState({violationTable: violationCards})
+   }
+
+   onSelection = async(e, {value}) => {
+        await this.setState({inspectionAddress: value})
+        await this.updateViolationTable();
+   }
+
 
    render() {
-      this.options = this.getOptionList();
+      const options = this.getOptionList();
       return (
          <div>
            <h2> AGENCY VIEW </h2>
@@ -62,8 +91,10 @@ class AgencyView extends Component {
                fluid
                selection
                onChange={this.onSelection}
-               options={this.options}
+               options={options}
             />
+            <br /> <br />
+            <Card.Group> {this.state.violationTable} </Card.Group>
          </div>
       );
   }
