@@ -29,7 +29,7 @@ async function initBlockchain(web3) {
   //const deployedNetwork = SafetyContract.networks[networkId];
   const instance = new web3.eth.Contract(
     SafetyChain.abi,
-    4 && "0x2b8481312dee0c375f6ecce970aca0bf1b86dfdc"
+    4 && "0x1aab823f8e832d2613097c9686a367adc67e51b9"
   );
 
   // put state data into the REDUX store for easy access from other pages and components
