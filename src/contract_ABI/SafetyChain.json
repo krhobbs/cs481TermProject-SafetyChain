@@ -1,0 +1,178 @@
+{
+   "contractName": "SafetyChain",
+   "abi": [
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "userCount",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "userInfractionCount",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "infractions",
+		"outputs": [
+			{
+				"internalType": "uint16",
+				"name": "limit",
+				"type": "uint16"
+			},
+			{
+				"internalType": "uint16",
+				"name": "speed",
+				"type": "uint16"
+			},
+			{
+				"internalType": "uint256",
+				"name": "datetime",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint32",
+				"name": "latitude",
+				"type": "uint32"
+			},
+			{
+				"internalType": "uint32",
+				"name": "longitude",
+				"type": "uint32"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "infractionToUser",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "uint16",
+				"name": "_limit",
+				"type": "uint16"
+			},
+			{
+				"internalType": "uint16",
+				"name": "_speed",
+				"type": "uint16"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_datetime",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint32",
+				"name": "_lat",
+				"type": "uint32"
+			},
+			{
+				"internalType": "uint32",
+				"name": "_lon",
+				"type": "uint32"
+			}
+		],
+		"name": "logInfraction",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "userAddrs",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "datetime",
+				"type": "uint256"
+			}
+		],
+		"name": "NewInfraction",
+		"type": "event"
+	}
+]
+}

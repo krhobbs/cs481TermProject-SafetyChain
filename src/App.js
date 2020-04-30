@@ -25,7 +25,8 @@ class App extends Component {
       speed: 0,
       speedLimit: 65,
       violations: [], // List of violation objects containing: speed, speedLimit, date, lat, lon
-      userAddress: ""
+      userAddress: "",
+      chain: null
     }
   }
 
@@ -80,8 +81,9 @@ class App extends Component {
       const web3 = await getWeb3();
       const data = await initBlockchain(web3);
       this.state.userAddress = data.userAddress;
+      this.state.chain = data.chain;
       console.log(data)
-      console.log(this.state)
+      console.log(this.state.chain)
    } catch (error){
       alert(error);
    }

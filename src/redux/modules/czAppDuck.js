@@ -48,7 +48,7 @@ export function blockchainInitialized(data) {
 
 const initialState = {
   web3Instance: null,
-  CZ: {}, // contract instance with methods, etc.
+  chain: {}, // contract instance with methods, etc.
   userAddress: "",
 };
 
@@ -75,7 +75,7 @@ export default function reducer(state = initialState, action) {
 
     case BLOCKCHAIN_INITIALIZED:
       return Object.assign({}, state, {
-        CZ: action.payload.CZ,
+        chain: action.payload.chain,
         userAddress: action.payload.userAddress,
       });
 

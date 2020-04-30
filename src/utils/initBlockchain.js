@@ -1,5 +1,5 @@
 
-//import SafetyContract from "../contract_ABI/SafetyChain.json";
+import SafetyChain from "../contract_ABI/SafetyChain.json";
 import store from "../redux/store";
 
 //import blockchainInitialized from "../redux/modules/czAppDuck";  // for some unknown reason, the duck doesn't work!
@@ -27,15 +27,15 @@ async function initBlockchain(web3) {
   // Get contract instance
   const networkId = await web3.eth.net.getId();
   //const deployedNetwork = SafetyContract.networks[networkId];
-  //const instance = new web3.eth.Contract(
-//    SafetyContract.abi,
-//    deployedNetwork && deployedNetwork.address
-//  );
+  const instance = new web3.eth.Contract(
+    SafetyChain.abi,
+    4 && "0x2b8481312dee0c375f6ecce970aca0bf1b86dfdc"
+  );
 
   // put state data into the REDUX store for easy access from other pages and components
 
   let data = {
-   // CZ: instance,
+    chain: instance,
     userAddress,    // shorthand
   };
 
