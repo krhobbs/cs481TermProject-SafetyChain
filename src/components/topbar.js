@@ -31,19 +31,19 @@ class TopBar extends Component {
         <Menu style={{ marginTop: "10px", backgroundColor: "Blue" }}>
             <Menu.Item>
                 <Link to={{ pathname: "/welcome"}}>
-                    <Button color="Grey">About</Button>
+                    <Button>About</Button>
                 </Link>
             </Menu.Item>
 
           <Menu.Item>
             <Link to={{ pathname: "/customerView"}}>
-              <Button color="Grey">Customer Portal</Button>
+              <Button>Customer Portal</Button>
             </Link>
           </Menu.Item>
 
           <Menu.Item>
             <Link to={{ pathname: "/agencyView"}}>
-              <Button color = "Grey">Agency Portal</Button>
+              <Button>Agency Portal</Button>
             </Link>
           </Menu.Item>
         </Menu>
