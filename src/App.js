@@ -12,6 +12,7 @@ import AgencyView from "./pages/agencyView"
 import { HashRouter, Route } from "react-router-dom";
 import { Container } from "semantic-ui-react";
 import { Provider } from "react-redux";
+import { Button } from "semantic-ui-react";
 
 import store from "./redux/store";
 
@@ -29,6 +30,26 @@ class App extends Component {
       chain: null
     }
   }
+
+  logOnChain(){
+    this.state.violations.forEach((violation) => {
+      this.state.chain.methods.logInfraction(violation.speedLimit, violation.speed, violation.date, violation.latitude, violation.longitude).send({from: this.state.userAddress})
+    })
+  }
+
+  fakeInfraction(){
+    let currentViolations = this.state.violations;
+
+    currentViolations.push({
+      speed: 80,
+      speedLimit: 35,
+      date: new Date().getDay(),
+      latitude: 50,
+      longitude: 135
+    });
+    this.setState({violations: currentViolations})
+    this.logOnChain();
+    }
 
   getSpeed() {
     let positionOptions = {
@@ -63,12 +84,11 @@ class App extends Component {
       currentViolations.push({
         speed: speed,
         speedLimit: speedLimit,
-        date: new Date(),
+        date: new Date().getDay(),
         latitude: this.state.latitude,
         longitude: this.state.longitude
       });
     }
-
     this.setState({violations: currentViolations})
   }
 
@@ -104,7 +124,7 @@ class App extends Component {
            <div className="App">
              <TopBar state={this.state} />
              <Speed speed={this.state.speed} speedLimit={this.state.speedLimit} longitude={this.state.longitude} latitude={this.state.latitude}/>
-             {this.displayViolations()}
+             <Button onClick = {() => this.fakeInfraction()}> Demo Infraction </Button>
            </div>
             <Route exact path="/" component={Welcome} />
             <Route exact path="/customerView" component={CustomerView} />
