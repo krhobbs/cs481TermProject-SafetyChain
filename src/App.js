@@ -42,8 +42,8 @@ class App extends Component {
 
     currentViolations.push({
       speed: 80,
-      speedLimit: 35,
-      date: new Date().getDay(),
+      speedLimit: 65,
+      date: new Date().getTime(),
       latitude: 50,
       longitude: 135
     });
