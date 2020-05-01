@@ -57,6 +57,8 @@ class AgencyView extends Component {
          let thisViolation = await this.props.chain.methods.infractions(userViolations[i]).call();
          let lat = thisViolation.latitude>>0;
          let lon = thisViolation.longitude>>0;
+         let timemilli = parseInt(thisViolation.datetime);
+         let stringtime = new Date(timemilli);
          console.log(thisViolation)
          violationCards.push(
             <Card fluid color='red'>
@@ -66,6 +68,8 @@ class AgencyView extends Component {
                      {thisViolation.speed} MPH / {thisViolation.limit} MPH
                      <hr/>
                      {lat} latitude  {lon} longitude
+                     <hr/>
+                     {stringtime.toString()}
 
                   </Card.Description>
                </Card.Content>
